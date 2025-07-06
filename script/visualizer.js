@@ -191,8 +191,18 @@ export class SwissCheeseVisualizer {
         const holeGroup = layerGroup.append('g')
             .attr('class', 'hole-group');
         
-        // Outer hole (slightly larger, darker)
-        holeGroup.append('ellipse')
+        // Calculate animation timing (stagger animations for visual interest)
+        const animationDelay = (layerIndex * 200) + (Math.random() * 1000);
+        const animationDuration = 2000 + (Math.random() * 1000); // 2-3 seconds
+        const positionDuration = 3000 + (Math.random() * 2000); // 3-5 seconds for position
+        
+        // Store original position and layer bounds for position animation
+        const originalX = x;
+        const originalY = y;
+        const layerBounds = this.getLayerBounds(layerGroup);
+        
+        // Outer hole (slightly larger, darker) - animated
+        const outerHole = holeGroup.append('ellipse')
             .attr('cx', x)
             .attr('cy', y)
             .attr('rx', size.rx + 2)
@@ -200,8 +210,8 @@ export class SwissCheeseVisualizer {
             .attr('fill', '#000')
             .attr('fill-opacity', 0.3);
         
-        // Inner hole (main hole)
-        holeGroup.append('ellipse')
+        // Inner hole (main hole) - animated
+        const innerHole = holeGroup.append('ellipse')
             .attr('class', 'hole')
             .attr('cx', x)
             .attr('cy', y)
@@ -211,14 +221,93 @@ export class SwissCheeseVisualizer {
             .attr('stroke', '#333')
             .attr('stroke-width', 1);
         
-        // Add depth highlight
-        holeGroup.append('ellipse')
+        // Add depth highlight - animated
+        const highlight = holeGroup.append('ellipse')
             .attr('cx', x - size.rx * 0.3)
             .attr('cy', y - size.ry * 0.3)
             .attr('rx', size.rx * 0.3)
             .attr('ry', size.ry * 0.3)
             .attr('fill', '#fff')
             .attr('fill-opacity', 0.6);
+        
+        // Add pulsing animation to all hole elements
+        const animateHole = () => {
+            // Calculate random size variations within the 10-50px range
+            const minRadius = 2;
+            const maxRadius = 20;
+            const baseRx = minRadius + Math.random() * (maxRadius - minRadius);
+            const baseRy = minRadius + Math.random() * (maxRadius - minRadius);
+            
+            // Animate outer hole
+            outerHole.transition()
+                .duration(animationDuration)
+                .ease(d3.easeSinInOut)
+                .attr('rx', baseRx + 2)
+                .attr('ry', baseRy + 2)
+                .on('end', animateHole);
+            
+            // Animate inner hole
+            innerHole.transition()
+                .duration(animationDuration)
+                .ease(d3.easeSinInOut)
+                .attr('rx', baseRx)
+                .attr('ry', baseRy);
+            
+            // Animate highlight
+            highlight.transition()
+                .duration(animationDuration)
+                .ease(d3.easeSinInOut)
+                .attr('rx', baseRx * 0.3)
+                .attr('ry', baseRy * 0.3);
+            
+            setTimeout(animateHole, animationDelay);
+        };
+        
+        // Add position animation to move holes around
+        const animatePosition = () => {
+            // Generate new random position within layer bounds
+            const margin = 30;
+            const newX = margin + Math.random() * (layerBounds.width - 2 * margin);
+            const newY = margin + Math.random() * (layerBounds.height - 2 * margin);
+            
+            // Animate outer hole position
+            outerHole.transition()
+                .duration(positionDuration)
+                .ease(d3.easeSinInOut)
+                .attr('cx', newX)
+                .attr('cy', newY)
+                .on('end', animatePosition);
+            
+            // Animate inner hole position
+            innerHole.transition()
+                .duration(positionDuration)
+                .ease(d3.easeSinInOut)
+                .attr('cx', newX)
+                .attr('cy', newY);
+            
+            // Animate highlight position (offset from main hole)
+            highlight.transition()
+                .duration(positionDuration)
+                .ease(d3.easeSinInOut)
+                .attr('cx', newX - size.rx * 0.3)
+                .attr('cy', newY - size.ry * 0.3);
+        };
+        
+        // Start animations after delay
+       // 
+        setTimeout(animatePosition, animationDelay); // Start position animation slightly after size animation
+    }
+    
+    getLayerBounds(layerGroup) {
+        // Get the layer rectangle to determine bounds
+        const layerRect = layerGroup.select('.layer-body').node();
+        if (layerRect) {
+            const width = parseFloat(layerRect.getAttribute('width'));
+            const height = parseFloat(layerRect.getAttribute('height'));
+            return { width, height };
+        }
+        // Fallback to default layer dimensions
+        return { width: LAYER_WIDTH, height: LAYER_HEIGHT };
     }
     
     attachEventListeners(layerGroup, layer, index) {
