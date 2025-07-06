@@ -2,11 +2,11 @@
 // Module for rendering the Swiss Cheese Model visualization
 
 // Constants
-const LAYER_THICKNESS = 30;
+const LAYER_THICKNESS = 0;
 const LAYER_WIDTH = 300;
 const LAYER_HEIGHT = 200;
 const LAYER_DEPTH_SPACING = 50;
-const PERSPECTIVE_OFFSET = 25;
+const PERSPECTIVE_OFFSET = 80;
 
 export class SwissCheeseVisualizer {
     constructor(containerId, tooltip, onLayerClick) {
@@ -47,14 +47,14 @@ export class SwissCheeseVisualizer {
         // Calculate 3D positioning with perspective
         const depthOffset = index * LAYER_DEPTH_SPACING;
         const perspectiveX = centerX - (LAYER_WIDTH / 2) + (index * PERSPECTIVE_OFFSET);
-        const perspectiveY = centerY - (LAYER_HEIGHT / 2) + (index * PERSPECTIVE_OFFSET);
+        const perspectiveY = centerY + (index * PERSPECTIVE_OFFSET/totalLayers);
         
         // Scale layers slightly smaller as they go deeper
         const scale = 1 - (index * 0.05);
         const layerWidth = LAYER_WIDTH * scale;
         const layerHeight = LAYER_HEIGHT * scale;
         
-        layerGroup.attr('transform', `translate(${perspectiveX}, ${perspectiveY})`);
+        layerGroup.attr('transform', `translate(${perspectiveX}, ${perspectiveY}) matrix(0.95,-0.25,0,1,0,0)`);
         
         // Create layer with proper 3D effect
         this.create3DLayer(layerGroup, layer, layerWidth, layerHeight, index);
@@ -110,22 +110,23 @@ export class SwissCheeseVisualizer {
             .attr('stroke-width', 2)
             .attr('rx', 5)
             .attr('ry', 5);
+
         
-        // Draw right side for 3D effect
-        layerGroup.append('polygon')
-            .attr('class', 'layer-side')
-            .attr('points', `${width},0 ${width + LAYER_THICKNESS},${-LAYER_THICKNESS} ${width + LAYER_THICKNESS},${height - LAYER_THICKNESS} ${width},${height}`)
-            .attr('fill', baseColor.darker(0.5))
-            .attr('stroke', '#333')
-            .attr('stroke-width', 1);
+        // // Draw right side for 3D effect
+        // layerGroup.append('polygon')
+        //     .attr('class', 'layer-side')
+        //     .attr('points', `${width},0 ${width + LAYER_THICKNESS},${-LAYER_THICKNESS} ${width + LAYER_THICKNESS},${height - LAYER_THICKNESS} ${width},${height}`)
+        //     .attr('fill', baseColor.darker(0.5))
+        //     .attr('stroke', '#333')
+        //     .attr('stroke-width', 1);
         
-        // Draw top side for 3D effect
-        layerGroup.append('polygon')
-            .attr('class', 'layer-top')
-            .attr('points', `0,0 ${LAYER_THICKNESS},${-LAYER_THICKNESS} ${width + LAYER_THICKNESS},${-LAYER_THICKNESS} ${width},0`)
-            .attr('fill', baseColor.darker(0.2))
-            .attr('stroke', '#333')
-            .attr('stroke-width', 1);
+        // // Draw top side for 3D effect
+        // layerGroup.append('polygon')
+        //     .attr('class', 'layer-top')
+        //     .attr('points', `0,0 ${LAYER_THICKNESS},${-LAYER_THICKNESS} ${width + LAYER_THICKNESS},${-LAYER_THICKNESS} ${width},0`)
+        //     .attr('fill', baseColor.darker(0.2))
+        //     .attr('stroke', '#333')
+        //     .attr('stroke-width', 1);
     }
     
     renderHoles(layerGroup, holes, layerWidth, layerHeight, layerIndex) {

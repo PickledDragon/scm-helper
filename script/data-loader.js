@@ -3,7 +3,7 @@
 
 export async function loadLayersData() {
     try {
-        const response = await fetch('./data/layers.json');
+        const response = await fetch('./data/sdlc-layers.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

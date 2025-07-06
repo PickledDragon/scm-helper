@@ -1,0 +1,217 @@
+{
+    "name": "Software Delivery Life Cycle Swiss Cheese Model",
+    "version": "1.0",
+    "description": "A model used to illustrate how layers of defense can prevent software delivery failures and security vulnerabilities.",
+    "layers": [
+        {
+            "name": "Requirements & Planning",
+            "description": "The foundation layer where business requirements are gathered, analyzed, and translated into technical specifications.",
+            "color": "#FF6B6B",
+            "holes": [
+                {
+                    "name": "Unclear Requirements",
+                    "description": "Ambiguous or incomplete requirements can lead to misaligned development efforts and project failures.",
+                    "sub-classes": [
+                        {
+                            "name": "Stakeholder Miscommunication",
+                            "description": "Different stakeholders having conflicting expectations without proper alignment."
+                        },
+                        {
+                            "name": "Missing Non-Functional Requirements",
+                            "description": "Overlooking performance, security, and scalability requirements during planning."
+                        }
+                    ]
+                },
+                {
+                    "name": "Inadequate Risk Assessment",
+                    "description": "Failure to identify and plan for potential technical and business risks early in the project.",
+                    "sub-classes": [
+                        {
+                            "name": "Technology Risk Blindness",
+                            "description": "Not considering the maturity and reliability of chosen technologies."
+                        },
+                        {
+                            "name": "Resource Estimation Errors",
+                            "description": "Underestimating time, budget, or skill requirements for project completion."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Development & Code Quality",
+            "description": "The layer focused on writing secure, maintainable, and efficient code following best practices.",
+            "color": "#4ECDC4",
+            "holes": [
+                {
+                    "name": "Poor Coding Practices",
+                    "description": "Inconsistent or insecure coding practices that introduce vulnerabilities and technical debt.",
+                    "sub-classes": [
+                        {
+                            "name": "Lack of Code Standards",
+                            "description": "Absence of enforced coding standards leading to inconsistent and hard-to-maintain code."
+                        },
+                        {
+                            "name": "Security Vulnerabilities",
+                            "description": "Introduction of common security flaws like SQL injection, XSS, or buffer overflows."
+                        }
+                    ]
+                },
+                {
+                    "name": "Insufficient Code Review",
+                    "description": "Inadequate peer review processes that allow defects and vulnerabilities to pass through.",
+                    "sub-classes": [
+                        {
+                            "name": "Rubber Stamp Reviews",
+                            "description": "Code reviews that are rushed or superficial, missing critical issues."
+                        },
+                        {
+                            "name": "Knowledge Silos",
+                            "description": "Only one developer understanding critical code sections, creating single points of failure."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Testing & Quality Assurance",
+            "description": "Comprehensive testing strategies to catch defects before they reach production environments.",
+            "color": "#45B7D1",
+            "holes": [
+                {
+                    "name": "Incomplete Test Coverage",
+                    "description": "Gaps in testing that allow bugs and edge cases to slip through to production.",
+                    "sub-classes": [
+                        {
+                            "name": "Missing Edge Cases",
+                            "description": "Failure to test boundary conditions and unusual user scenarios."
+                        },
+                        {
+                            "name": "Inadequate Integration Testing",
+                            "description": "Not thoroughly testing how different system components work together."
+                        }
+                    ]
+                },
+                {
+                    "name": "Environmental Inconsistencies",
+                    "description": "Differences between test and production environments that mask potential issues.",
+                    "sub-classes": [
+                        {
+                            "name": "Configuration Drift",
+                            "description": "Test environments not matching production configurations and dependencies."
+                        },
+                        {
+                            "name": "Data Quality Issues",
+                            "description": "Using unrealistic or insufficient test data that doesn't represent production scenarios."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Deployment & Release Management",
+            "description": "Automated and controlled processes for deploying software to production environments safely.",
+            "color": "#96CEB4",
+            "holes": [
+                {
+                    "name": "Manual Deployment Processes",
+                    "description": "Error-prone manual steps in deployment that can lead to configuration mistakes and downtime.",
+                    "sub-classes": [
+                        {
+                            "name": "Human Error in Configuration",
+                            "description": "Manual configuration changes that introduce errors or security misconfigurations."
+                        },
+                        {
+                            "name": "Lack of Rollback Strategy",
+                            "description": "Inability to quickly revert changes when deployments fail or cause issues."
+                        }
+                    ]
+                },
+                {
+                    "name": "Insufficient Release Planning",
+                    "description": "Poor coordination and timing of releases that can impact system stability.",
+                    "sub-classes": [
+                        {
+                            "name": "Dependency Conflicts",
+                            "description": "Not properly managing dependencies between different system components during releases."
+                        },
+                        {
+                            "name": "Change Communication Gaps",
+                            "description": "Stakeholders not being informed about changes, leading to surprise issues or conflicts."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Monitoring & Operations",
+            "description": "Continuous monitoring and operational practices to maintain system health and performance.",
+            "color": "#FECA57",
+            "holes": [
+                {
+                    "name": "Inadequate Monitoring",
+                    "description": "Insufficient visibility into system performance, errors, and security events.",
+                    "sub-classes": [
+                        {
+                            "name": "Alert Fatigue",
+                            "description": "Too many false positive alerts causing important issues to be ignored."
+                        },
+                        {
+                            "name": "Missing Key Metrics",
+                            "description": "Not monitoring critical business and technical metrics that indicate system health."
+                        }
+                    ]
+                },
+                {
+                    "name": "Poor Incident Response",
+                    "description": "Ineffective processes for detecting, responding to, and resolving production incidents.",
+                    "sub-classes": [
+                        {
+                            "name": "Slow Detection Times",
+                            "description": "Issues taking too long to be detected, increasing their impact on users."
+                        },
+                        {
+                            "name": "Inadequate Post-Incident Learning",
+                            "description": "Not conducting proper post-mortems to prevent similar incidents from recurring."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Security & Compliance",
+            "description": "Cross-cutting security measures and compliance requirements that protect the entire software delivery pipeline.",
+            "color": "#FF7675",
+            "holes": [
+                {
+                    "name": "Supply Chain Vulnerabilities",
+                    "description": "Security risks introduced through third-party dependencies, libraries, and tools.",
+                    "sub-classes": [
+                        {
+                            "name": "Unvetted Dependencies",
+                            "description": "Using third-party packages without proper security assessment or version management."
+                        },
+                        {
+                            "name": "Compromised Build Tools",
+                            "description": "Security breaches in the development and build pipeline that can inject malicious code."
+                        }
+                    ]
+                },
+                {
+                    "name": "Access Control Weaknesses",
+                    "description": "Inadequate controls over who can access and modify critical systems and code.",
+                    "sub-classes": [
+                        {
+                            "name": "Overprivileged Access",
+                            "description": "Users having more permissions than necessary for their role, increasing blast radius of breaches."
+                        },
+                        {
+                            "name": "Weak Authentication",
+                            "description": "Insufficient multi-factor authentication and password policies for accessing critical systems."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
