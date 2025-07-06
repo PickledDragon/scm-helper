@@ -1,0 +1,66 @@
+/* accordion.css */
+/* Styles for accordion functionality */
+
+.accordion-item {
+    margin-bottom: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.accordion-header {
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.accordion-header:hover {
+    background: linear-gradient(145deg, #e9ecef, #dee2e6);
+    transform: translateY(-1px);
+}
+
+.accordion-content {
+    display: none;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 0 0 6px 6px;
+    line-height: 1.5;
+}
+
+.accordion-content.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 200px;
+    }
+}
+
+.accordion-content h6 {
+    color: #495057;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.accordion-content ul {
+    margin-left: 15px;
+}
+
+.accordion-content li {
+    margin-bottom: 5px;
+}
