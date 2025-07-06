@@ -14,7 +14,6 @@
         }
         
         .layer {
-            position: absolute;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -22,20 +21,20 @@
         .layer-body {
             stroke: #333;
             stroke-width: 2;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.4));
+            transition: all 0.3s ease;
         }
         
         .layer-side {
             fill-opacity: 0.8;
+            stroke: #333;
+            stroke-width: 1;
         }
         
         .layer-top {
             fill-opacity: 0.6;
-        }
-        
-        .layer.active .layer-body {
-            stroke-width: 4;
-            stroke: #000;
+            stroke: #333;
+            stroke-width: 1;
         }
         
         .layer-name {
@@ -57,51 +56,120 @@
             position: absolute;
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 8px;
-            border-radius: 4px;
+            padding: 12px;
+            border-radius: 8px;
             font-size: 12px;
             pointer-events: none;
             z-index: 1000;
-            max-width: 200px;
+            max-width: 250px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         .tooltip-header {
             font-weight: bold;
-            margin-bottom: 4px;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #ecf0f1;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 4px;
         }
         
         .tooltip-body {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            color: #bdc3c7;
         }
         
         .tooltip-footer {
             font-style: italic;
-            font-size: 10px;
+            font-size: 11px;
+            color: #95a5a6;
+            margin-top: 4px;
         }
         
         .accordion-item {
             margin-bottom: 10px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .accordion-header {
-            background-color: #f8f9fa;
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
             border: 1px solid #dee2e6;
-            border-radius: 4px;
-            padding: 10px;
+            border-radius: 6px;
+            padding: 12px;
             cursor: pointer;
             user-select: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(145deg, #e9ecef, #dee2e6);
+            transform: translateY(-1px);
         }
         
         .accordion-content {
             display: none;
             border: 1px solid #dee2e6;
             border-top: none;
-            padding: 10px;
+            padding: 15px;
             background-color: #fff;
+            border-radius: 0 0 6px 6px;
+            line-height: 1.5;
         }
         
         .accordion-content.active {
             display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 200px;
+            }
+        }
+        
+        .accordion-content h6 {
+            color: #495057;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .accordion-content ul {
+            margin-left: 15px;
+        }
+        
+        .accordion-content li {
+            margin-bottom: 5px;
+        }
+        
+        #selected-layer-details {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 8px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        #selected-layer-details h3 {
+            border-bottom: 2px solid currentColor;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        
+        #selected-layer-details h4 {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #495057;
         }
     </style>
 </head>
