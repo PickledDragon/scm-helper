@@ -2,7 +2,6 @@
 // Module for rendering the Swiss Cheese Model visualization
 
 // Constants
-const LAYER_THICKNESS = 0;
 const LAYER_WIDTH = 300;
 const LAYER_HEIGHT = 200;
 const PERSPECTIVE_OFFSET = 100;
@@ -16,14 +15,14 @@ export class SwissCheeseVisualizer {
     }
     
     render(layersData) {
-        const container = document.getElementById('layers-container');
+        const container = document.getElementById(this.containerId);
         const containerRect = container.getBoundingClientRect();
         
         // Clear previous content
-        d3.select('#layers-container').selectAll('*').remove();
+        d3.select(`#${this.containerId}`).selectAll('*').remove();
         
         // Create SVG with proper dimensions
-        const svg = d3.select('#layers-container')
+        const svg = d3.select(`#${this.containerId}`)
             .append('svg')
             .attr('width', containerRect.width)
             .attr('height', containerRect.height);
