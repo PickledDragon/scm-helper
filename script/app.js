@@ -57,18 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
     dismissButton.addEventListener('click', () => {
         splashScreen.style.transition = 'opacity 0.5s ease-out';
         splashScreen.style.opacity = '0';
+        splashScreen.style.pointerEvents = 'none'; // Immediately disable pointer events
         
         setTimeout(() => {
-            splashScreen.style.display = 'none';
+            splashScreen.remove(); // Completely remove from DOM
         }, 500);
     });
     
     // Optional: Auto-dismiss after 10 seconds
     setTimeout(() => {
-        if (splashScreen.style.display !== 'none') {
+        if (document.getElementById('splashScreen')) { // Check if still exists
             dismissButton.click();
         }
-    }, 5000);
+    }, 10000);
     
     const app = new SwissCheeseApp();
     app.init();
