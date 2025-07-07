@@ -5,6 +5,7 @@ import { loadLayersData } from './data-loader.js';
 import { SwissCheeseVisualizer } from './visualizer.js';
 import { Tooltip } from './tooltip.js';
 import { DetailsPane } from './details-pane.js';
+import { FindingsManager } from './findings-manager.js';
 
 class SwissCheeseApp {
     constructor() {
@@ -28,6 +29,9 @@ class SwissCheeseApp {
             // Load data and render
             this.layersData = await loadLayersData();
             this.visualizer.render(this.layersData);
+            
+            // Initialize findings badge
+            FindingsManager.updateFindingsBadge();
             
             // Make toggleAccordion and detailsPane globally available
             window.toggleAccordion = DetailsPane.toggleAccordion;

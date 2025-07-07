@@ -152,8 +152,13 @@ export class DetailsPane {
             };
         }
         
-        // Save to localStorage
-        this.saveToLocalStorage(finding);
+        // Save to localStorage using FindingsManager
+        if (window.FindingsManager) {
+            window.FindingsManager.addFinding(finding);
+        } else {
+            // Fallback if FindingsManager is not available
+            this.saveToLocalStorage(finding);
+        }
         
         // Close modal
         const modal = bootstrap.Modal.getInstance(document.getElementById('addFindingModal'));
