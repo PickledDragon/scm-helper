@@ -1,0 +1,112 @@
+{
+    "name": "Swiss Cheese Model",
+    "version": "1.0",
+    "description": "A model used to illustrate how layers of defense can prevent accidents.",
+    "layers": [
+        {
+            "name": "Organizational Culture",
+            "description": "The shared values, beliefs, and practices within an organization that influence how safety is prioritized.",
+            "color": "#FF5733",
+            "holes": [
+                {
+                    "name": "Lack of Safety Reporting",
+                    "description": "Insufficient mechanisms for reporting safety issues can lead to unaddressed risks.",
+                    "sub-classes": [
+                        {
+                            "name": "Fear of Repercussions",
+                            "description": "Employees may fear punishment for reporting safety issues, leading to underreporting."
+                        },
+                        {
+                            "name": "Inadequate Feedback Mechanisms",
+                            "description": "Lack of feedback on reported issues can discourage future reporting."
+                        }
+                    ]
+                },
+                {
+                    "name": "Poor Communication",
+                    "description": "Ineffective communication can result in misunderstandings and overlooked safety protocols.",
+                    "sub-classes": [
+                        {
+                            "name": "Information Silos",
+                            "description": "Departments may not share critical safety information, leading to gaps in knowledge."
+                        },
+                        {
+                            "name": "Ambiguous Safety Messages",
+                            "description": "Unclear safety instructions can lead to confusion and non-compliance."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Training and Competence",
+            "description": "Ensuring that all personnel are adequately trained and competent in their roles to prevent errors.",
+            "color": "#33FF57",
+            "holes": [
+                {
+                    "name": "Inadequate Training",
+                    "description": "Insufficient training can lead to mistakes and unsafe practices.",
+                    "sub-classes": [
+                        {
+                            "name": "Lack of Initial Training",
+                            "description": "New employees may not receive comprehensive training before starting work."
+                        },
+                        {
+                            "name": "Insufficient Refresher Courses",
+                            "description": "Ongoing training may be neglected, leading to skill atrophy."
+                        }
+                    ]
+                },
+                {
+                    "name": "Skill Degradation",
+                    "description": "Over time, skills may degrade if not regularly practiced or updated.",
+                    "sub-classes": [
+                        {
+                            "name": "Lack of Practice",
+                            "description": "Employees may not have opportunities to practice critical skills regularly."
+                        },
+                        {
+                            "name": "Failure to Update Skills",
+                            "description": "New technologies or procedures may not be integrated into training programs."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Operational Procedures",
+            "description": "Standardized procedures that guide operations and help prevent mistakes.",
+            "color": "#3357FF",
+            "holes": [
+                {
+                    "name": "Non-compliance with Procedures",
+                    "description": "Failure to follow established procedures can lead to accidents.",
+                    "sub-classes": [
+                        {
+                            "name": "Lack of Adherence",
+                            "description": "Employees may skip steps in procedures due to time pressure or complacency."
+                        },
+                        {
+                            "name": "Procedural Complexity",
+                            "description": "Overly complex procedures can lead to confusion and non-compliance."
+                        }
+                    ]
+                },
+                {
+                    "name": "Outdated Procedures",
+                    "description": "Procedures that are not regularly updated may not reflect current best practices.",
+                    "sub-classes": [
+                        {
+                            "name": "Failure to Review",
+                            "description": "Procedures may not be reviewed regularly, leading to outdated practices."
+                        },
+                        {
+                            "name": "Lack of Stakeholder Input",
+                            "description": "Procedures may be developed without input from those who use them, leading to impractical guidelines."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

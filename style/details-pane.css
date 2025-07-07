@@ -1,0 +1,22 @@
+/* details-pane.css */
+/* Styles for the details pane */
+
+#selected-layer-details {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 0;
+    padding: 20px;
+    box-shadow: none;
+    overflow-y: auto;
+}
+
+#selected-layer-details h3 {
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+#selected-layer-details h4 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #495057;
+}
