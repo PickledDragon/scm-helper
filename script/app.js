@@ -49,6 +49,27 @@ class SwissCheeseApp {
 
 // Initialize the application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Handle splash screen
+    const splashScreen = document.getElementById('splashScreen');
+    const dismissButton = document.getElementById('dismissSplash');
+    
+    // Add click handler for dismiss button
+    dismissButton.addEventListener('click', () => {
+        splashScreen.style.transition = 'opacity 0.5s ease-out';
+        splashScreen.style.opacity = '0';
+        
+        setTimeout(() => {
+            splashScreen.style.display = 'none';
+        }, 500);
+    });
+    
+    // Optional: Auto-dismiss after 10 seconds
+    setTimeout(() => {
+        if (splashScreen.style.display !== 'none') {
+            dismissButton.click();
+        }
+    }, 5000);
+    
     const app = new SwissCheeseApp();
     app.init();
 });

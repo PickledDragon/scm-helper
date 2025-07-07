@@ -54,3 +54,47 @@
 .hole-group {
     pointer-events: none;
 }
+
+/* Additional styles for splash screen */
+#splashScreen {
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease-in;
+}
+
+#splashScreen .card {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#splashScreen .card-header {
+    border-bottom: 2px solid #ffc107;
+}
+
+#splashScreen .btn {
+    min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+#splashScreen .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
