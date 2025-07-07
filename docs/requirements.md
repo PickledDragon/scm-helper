@@ -1,7 +1,7 @@
 # This is the requirements document for the "Swiss Cheese Model(SCM) Helper" tool.
 
 ## Objective
-The Swiss Cheese Model Helper tool has software engineers and incident postmortem facilitators as its primary audience. It is suppossed to show an interactive model where the end users can click and identify the holes applicabe to each layer. An example illustration of the concept can be seen [here](https://static01.nyt.com/images/2020/12/08/science/08SCI-cheese-graphic-REV2/08SCI-cheese-graphic-REV2-superJumbo.png?quality=75&auto=webp). 
+The Swiss Cheese Model Helper tool has software engineers and incident postmortem facilitators as its primary audience. It is supposed to show an interactive model where the end users can click and identify the holes applicabe to each layer. An example illustration of the concept can be seen [here](https://static01.nyt.com/images/2020/12/08/science/08SCI-cheese-graphic-REV2/08SCI-cheese-graphic-REV2-superJumbo.png?quality=75&auto=webp). 
 ## Functional Requirements
 
 ### Displaying the initial view
