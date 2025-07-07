@@ -5,6 +5,7 @@ import { loadLayersData } from './data-loader.js';
 import { SwissCheeseVisualizer } from './visualizer.js';
 import { Tooltip } from './tooltip.js';
 import { DetailsPane } from './details-pane.js';
+import { FindingsManager } from './findings-manager.js';
 
 class SwissCheeseApp {
     constructor() {
@@ -29,8 +30,12 @@ class SwissCheeseApp {
             this.layersData = await loadLayersData();
             this.visualizer.render(this.layersData);
             
-            // Make toggleAccordion globally available
+            // Initialize findings badge
+            FindingsManager.updateFindingsBadge();
+            
+            // Make toggleAccordion and detailsPane globally available
             window.toggleAccordion = DetailsPane.toggleAccordion;
+            window.detailsPane = this.detailsPane;
             
         } catch (error) {
             console.error('Failed to initialize app:', error);
@@ -44,6 +49,28 @@ class SwissCheeseApp {
 
 // Initialize the application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Handle splash screen
+    const splashScreen = document.getElementById('splashScreen');
+    const dismissButton = document.getElementById('dismissSplash');
+    
+    // Add click handler for dismiss button
+    dismissButton.addEventListener('click', () => {
+        splashScreen.style.transition = 'opacity 0.5s ease-out';
+        splashScreen.style.opacity = '0';
+        splashScreen.style.pointerEvents = 'none'; // Immediately disable pointer events
+        
+        setTimeout(() => {
+            splashScreen.remove(); // Completely remove from DOM
+        }, 500);
+    });
+    
+    // Optional: Auto-dismiss after 10 seconds
+    setTimeout(() => {
+        if (document.getElementById('splashScreen')) { // Check if still exists
+            dismissButton.click();
+        }
+    }, 10000);
+    
     const app = new SwissCheeseApp();
     app.init();
 });
