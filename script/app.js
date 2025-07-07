@@ -29,8 +29,9 @@ class SwissCheeseApp {
             this.layersData = await loadLayersData();
             this.visualizer.render(this.layersData);
             
-            // Make toggleAccordion globally available
+            // Make toggleAccordion and detailsPane globally available
             window.toggleAccordion = DetailsPane.toggleAccordion;
+            window.detailsPane = this.detailsPane;
             
         } catch (error) {
             console.error('Failed to initialize app:', error);
